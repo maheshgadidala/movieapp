@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: movieapp
+  server:
+    port: 8080
+  datasource:
+    url: jdbc:mysql://localhost:3306/movieapp
+    username: root
+    password: 8801
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+      minimum-idle: 5
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+file:
+  upload:
+    path: C:/Users/user/Desktop/movieapp/movieapp/posters/
+
+base:
+  url: http://localhost:8080/file
