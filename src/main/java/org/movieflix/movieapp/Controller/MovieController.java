@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.movieflix.movieapp.Service.MovieService;
 import org.movieflix.movieapp.dto.MovieDto;
+import org.movieflix.movieapp.exception.emptyFileException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -33,7 +34,12 @@ public class MovieController {
     // Add movie
     @PostMapping("/add-movie")
     public ResponseEntity<MovieDto> addMovie(@RequestPart MultipartFile file,
-                                             @RequestPart String movieDto) throws IOException {
+                                             @RequestPart String movieDto) throws IOException, emptyFileException {
+
+        //throw exception if file is empty
+        if(file.isEmpty()){
+            throw new emptyFileException("File is empty,Please send another file");
+        }
         MovieDto dto = convertMovieDto(movieDto);
         return new ResponseEntity<>(movieService.addMovie(dto, file), HttpStatus.CREATED);
     }

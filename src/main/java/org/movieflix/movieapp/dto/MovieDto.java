@@ -1,9 +1,6 @@
 package org.movieflix.movieapp.dto;
 
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +27,9 @@ public class MovieDto {
     @DecimalMax(value = "10.0", inclusive = true, message = "Rating must not exceed 10.0")
     private Double rating;
 
+
     @NotNull(message = "Please provide release year")
+    @Min(value = 1888, message = "Release year must be after the invention of movies")
     private Integer releaseYear;
 
     @NotBlank(message = "Please provide movie poster URL")
