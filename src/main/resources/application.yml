@@ -30,4 +30,4 @@ file:
     path: C:/Users/user/Desktop/movieapp/movieapp/posters/
 
 base:
-  url: http://localhost:8080/file
+  url: http://localhost:8080/movies

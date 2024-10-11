@@ -13,7 +13,7 @@ import java.util.List;
 public interface MovieService {
 
     //add movie
-    MovieDto addMovie(MovieDto movieDto, MultipartFile file) throws IOException;
+    MovieDto addMovie(MovieDto movieDtoList, MultipartFile file) throws IOException;
     //get movie by id
     MovieDto getMovieById(Integer movieId);
     //get all movies
