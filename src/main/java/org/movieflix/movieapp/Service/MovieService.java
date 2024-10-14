@@ -13,22 +13,26 @@ import java.util.List;
 public interface MovieService {
 
     //add movie
-    MovieDto addMovie(MovieDto movieDtoList, MultipartFile file) throws IOException;
+    MovieDto addMovie(MovieDto movieDto, MultipartFile file) throws IOException;
+
     //get movie by id
     MovieDto getMovieById(Integer movieId);
+
     //get all movies
-    List<MovieDto>getAllMovies();
+    List<MovieDto> getAllMovies();
 
     //delete all movies
-    List<MovieDto>deleteAllMovies();
+    List<MovieDto> deleteAllMovies();
+
     //delete movie by id
     String deleteMovieById(Integer movieId) throws IOException;
 
     //update movie by id
     MovieDto updateMovieById(Integer movieId, MovieDto movieDto, MultipartFile file) throws IOException;
 
+    MoviePageResponse getAllMoviesWithPagination(Integer currentPageNumber, Integer totalPages);
+
+    MoviePageResponse getAllMoviesWithPaginationAndSorting(Integer currentPageNumber, Integer totalPages, String sortBy, String dir);
+
 
 }
-
-
-
