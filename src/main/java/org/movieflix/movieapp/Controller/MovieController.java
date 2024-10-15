@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,6 +37,7 @@ public class MovieController {
     private String uploadPath;
 
     // Add movie
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/add-movie")
     public ResponseEntity<MovieDto> addMovie(@RequestPart MultipartFile file,
                                              @RequestPart String movieDto) throws IOException, EmptyFileException {
@@ -64,6 +66,7 @@ public class MovieController {
     }
 
     // Update movie by ID
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(value = "/movies/{movieId}", consumes = {"multipart/form-data"})
     public ResponseEntity<MovieDto> updateMovieById(
             @PathVariable Integer movieId,
@@ -75,6 +78,7 @@ public class MovieController {
     }
 
     // Delete movie by ID
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/movies/{movieId}")
     public ResponseEntity<String> deleteMovieById(@PathVariable Integer movieId) throws IOException {
         movieService.deleteMovieById(movieId);
